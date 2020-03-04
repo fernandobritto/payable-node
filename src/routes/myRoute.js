@@ -21,7 +21,7 @@ MyRoute.defaultProps = {
   isClosed: false
 }
 
-MyRoute.prototype = {
+MyRoute.propTypes = {
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
   isClosed: PropTypes.bool
