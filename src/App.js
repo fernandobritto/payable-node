@@ -1,6 +1,14 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-function App() {
-  return <div></div>
+import Routes from './routes'
+import Header from './components/Header'
+
+export default function src() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes />
+    </BrowserRouter>
+  )
 }
-export default App
