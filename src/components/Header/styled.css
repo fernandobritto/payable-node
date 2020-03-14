@@ -1,0 +1,33 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px 10xp;
+}
+
+.logo{
+  max-width: 110px;
+  max-height: 100px;
+}
+
+.reservation{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.reservation div{
+  text-align: right;
+  margin-right: 10px;
+}
+
+.reservation strong{
+  color: aliceblue;
+  display: block;
+}
+
+.reservation span{
+  color: bisque;
+  font-size: 15px;
+}
