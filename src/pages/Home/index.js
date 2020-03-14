@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function Home() {
-  return <div>Home</div>
+  const [trips, setTrips] = useState([])
+  useEffect(() => {}, [])
+
+  return (
+    <div>Home</div>
+  )
 }
