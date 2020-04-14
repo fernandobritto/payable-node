@@ -15,5 +15,10 @@ class RealStateController extends Controller
       $this->realState = $realState;
     }
 
+    public function index()
+    {
+        $realState = $this->realState->paginate('10');
+        return response()->json($realState, 200);
+    }
 
 }
