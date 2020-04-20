@@ -23,7 +23,23 @@ class RealStateController extends Controller
 
     public function store(Request $request)
     {
-        return response()->json($request->all(), 200);
+        $data = $request->all();
+
+        try {
+
+          $realState = $this->realState->create($data); // Mass Asigment
+
+          return response()->json([
+            'data' => [
+              'msg' => 'Imovel cadastrado com sucesso!'
+            ]
+          ], 200);
+        } catch (\Exception $e) {
+          return response()->json(['error' => $e->getMessage()], 401);
+        }
+
+
+
     }
 
 }
