@@ -14,7 +14,8 @@ class CsvController extends Controller
      */
     public function index()
     {
-        //
+        $files = Csv::all();
+        return view('template.viewcsv', compact('files'));
     }
 
     /**
@@ -46,7 +47,7 @@ class CsvController extends Controller
      */
     public function show(Csv $csv)
     {
-        //
+
     }
 
     /**

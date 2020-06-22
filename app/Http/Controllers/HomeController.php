@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use League\Csv\Reader;
+
 
 class HomeController extends Controller
 {
@@ -24,5 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function upload(Request $request)
+    {
+        $now = new Carbon();
+        $file = $request->csv->storeAs('csv', 'file_'.$now->format('Y_m_d_his').'.csv');
+
+        return redirect()->route('home');
     }
 }
