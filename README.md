@@ -1,4 +1,6 @@
-# CSV orchestrator system
+# Crypto Control system
+
+> Cryptocurrency trading controller developed with Vue
 
 
 
