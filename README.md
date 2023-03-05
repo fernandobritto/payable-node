@@ -8,27 +8,15 @@ Simples função Lambda desenvolvida em Nodejs que traz as informações de todo
 
 As principais ferramentas utilizadas:
 
-- [Serverless][serverless]
-- [Node.js][nodejs]
 - [Lambda][lambda]
-- [MySQL][mysql]
-- [RDS][rds]
+- [Node.js][nodejs]
+- [DynamoDB][dynamodb]
+- [Serverless][serverless]
 
-
-
-
-[serverless]: https://www.serverless.com/
-[nodejs]: https://nodejs.org/
 [lambda]: https://aws.amazon.com/pt/lambda/
-[mysql]: https://www.mysql.com/
-[rds]: https://aws.amazon.com/pt/rds/
-
-[license]: https://opensource.org/licenses/MIT
-
-
-
-
-
+[nodejs]: https://nodejs.org/
+[dynamodb]: https://aws.amazon.com/pm/dynamodb
+[serverless]: https://www.serverless.com/
 
 # Autor
 

@@ -1,29 +1,57 @@
 {
   "name": "payable-node",
-  "version": "1.0.0",
-  "description": "Função Lambda AWS para consulta de faturas pendentes",
-  "main": "handler.js",
+  "version": "0.0.1",
+  "description": "API Serverless",
+  "main": "./src/handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./scripts.sh build",
+    "patch": "npm version patch -m \"release: version %s\" && git push --tags && git push",
+    "postversion": "./scripts.sh sonar",
+    "pretest": "eslint . --fix && prettier --write ./src",
+    "lint": "eslint . --fix",
+    "test": "./scripts.sh test",
+    "localhost": "./scripts.sh dev"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "!win32"
+  ],
+  "keywords": [],
+  "author": "Fernando Britto",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "2.1084.0",
+    "axios": "^0.26.0",
+    "csv-parser": "^3.0.0",
+    "debug": "4.3.3"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "5.6.2",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.4.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jest": "26.1.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-promise": "5.2.0",
+    "jest": "27.5.1",
+    "prettier": "2.5.1",
+    "serverless": "3.7.1",
+    "serverless-domain-manager": "6.0.2",
+    "serverless-dynamodb-local": "0.2.40",
+    "serverless-offline": "8.5.0",
+    "serverless-plugin-lambda-insights": "1.4.0",
+    "serverless-prune-plugin": "2.0.1",
+    "serverless-s3-local": "^0.6.22"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fernandobritto/Payable-Node.git"
+    "url": "git+https://github.com/fernandobritto/payable-node.git"
   },
-  "keywords": [
-    "AWS",
-    "RDS",
-    "NodeJS",
-    "Lambda",
-    "Serverless"
-  ],
-  "author": "Fernando Britto",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fernandobritto/Payable-Node/issues"
+    "url": "https://github.com/fernandobritto/payable-node/issues"
   },
-  "homepage": "https://github.com/fernandobritto/Payable-Node#readme",
-  "dependencies": {
-    "mysql": "^2.18.1"
-  }
+  "homepage": "https://github.com/fernandobritto/payable-node#readme"
 }
