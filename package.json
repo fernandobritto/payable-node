@@ -1,57 +1,70 @@
 {
   "name": "payable-node",
   "version": "0.0.1",
-  "description": "API Serverless",
-  "main": "./src/handler.js",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
-    "build": "./scripts.sh build",
-    "patch": "npm version patch -m \"release: version %s\" && git push --tags && git push",
-    "postversion": "./scripts.sh sonar",
-    "pretest": "eslint . --fix && prettier --write ./src",
-    "lint": "eslint . --fix",
-    "test": "./scripts.sh test",
-    "localhost": "./scripts.sh dev"
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "os": [
-    "darwin",
-    "linux",
-    "!win32"
-  ],
-  "keywords": [],
-  "author": "Fernando Britto",
-  "license": "ISC",
   "dependencies": {
-    "aws-sdk": "2.1084.0",
-    "axios": "^0.26.0",
-    "csv-parser": "^3.0.0",
-    "debug": "4.3.3"
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "aws-sdk-mock": "5.6.2",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.4.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jest": "26.1.1",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-promise": "5.2.0",
-    "jest": "27.5.1",
-    "prettier": "2.5.1",
-    "serverless": "3.7.1",
-    "serverless-domain-manager": "6.0.2",
-    "serverless-dynamodb-local": "0.2.40",
-    "serverless-offline": "8.5.0",
-    "serverless-plugin-lambda-insights": "1.4.0",
-    "serverless-prune-plugin": "2.0.1",
-    "serverless-s3-local": "^0.6.22"
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.0.0",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/supertest": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fernandobritto/payable-node.git"
-  },
-  "bugs": {
-    "url": "https://github.com/fernandobritto/payable-node/issues"
-  },
-  "homepage": "https://github.com/fernandobritto/payable-node#readme"
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
 }
