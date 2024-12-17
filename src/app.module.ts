@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { PaymentsModule } from './payments/payments.module'
+import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module'
+import { PaymentModel } from './payments/entities/payment.entity'
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService]
+  imports: [
+    PaymentsModule,
+    SequelizeModule.forRoot({
+      dialect: 'sqlite',
+      host: ':memory:',
+      autoLoadModels: true,
+      models: [PaymentModel],
+    }),
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
