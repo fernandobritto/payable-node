@@ -1,99 +1,270 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Sistema de Pagamentos - Payable Node
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Uma API REST para gerenciamento de pagamentos desenvolvida com NestJS, TypeScript e SQLite.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📋 Sobre o Projeto
 
-## Description
+Este projeto é um sistema de pagamentos que fornece uma API REST completa para gerenciar transações financeiras. A aplicação utiliza o framework NestJS com TypeScript e integra-se com uma API bancária simulada para processar pagamentos.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Principais Funcionalidades
 
-## Project setup
+- ✅ CRUD completo de pagamentos
+- ✅ Integração com API bancária externa
+- ✅ Persistência em banco SQLite
+- ✅ Validação de dados com DTOs
+- ✅ Arquitetura modular e escalável
+- ✅ Testes unitários e E2E configurados
 
-```bash
-$ pnpm install
+## 🏗️ Arquitetura
+
+```
+src/
+├── main.ts                    # Ponto de entrada da aplicação
+├── app.module.ts             # Módulo principal
+└── payments/                 # Módulo de pagamentos
+    ├── dto/                  # Data Transfer Objects
+    │   ├── create-payment.dto.ts
+    │   └── update-payment.dto.ts
+    ├── entities/             # Entidades do banco de dados
+    │   └── payment.entity.ts
+    ├── payments.controller.ts # Controller REST
+    ├── payments.service.ts   # Lógica de negócio
+    ├── payments.module.ts    # Configuração do módulo
+    └── *.spec.ts            # Testes unitários
 ```
 
-## Compile and run the project
+## 🚀 Tecnologias Utilizadas
 
+- **Framework**: NestJS 10.x
+- **Linguagem**: TypeScript 5.x
+- **Banco de Dados**: SQLite (em memória)
+- **ORM**: Sequelize com sequelize-typescript
+- **HTTP Client**: Axios (@nestjs/axios)
+- **Testes**: Jest
+- **Linting**: ESLint + Prettier
+- **Gerenciador de Pacotes**: pnpm
+
+## ⚙️ Pré-requisitos
+
+- Node.js >= 18.x
+- pnpm >= 8.x
+
+## 🔧 Instalação e Configuração
+
+### 1. Clone o repositório
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+git clone <repository-url>
+cd payable-node
 ```
 
-## Run tests
-
+### 2. Instale as dependências
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+### 3. Inicie o servidor bancário mock (Terminal 1)
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+pnpm run bank-api
+```
+> O servidor mock será executado na porta 3001
+
+### 4. Inicie a aplicação (Terminal 2)
+```bash
+# Desenvolvimento
+pnpm run start:dev
+
+# Produção
+pnpm run start:prod
+
+# Debug
+pnpm run start:debug
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+A aplicação estará disponível em: `http://localhost:8084`
 
-## Resources
+## 📡 API Endpoints
 
-Check out a few resources that may come in handy when working with NestJS:
+### Pagamentos
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| POST   | `/payments` | Criar novo pagamento |
+| GET    | `/payments` | Listar todos os pagamentos |
+| GET    | `/payments/:id` | Buscar pagamento por ID |
+| PATCH  | `/payments/:id` | Atualizar pagamento |
+| DELETE | `/payments/:id` | Remover pagamento |
 
-## Support
+### Exemplo de Requisição
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**POST /payments**
+```json
+{
+  "amount": 100.50,
+  "currency": "BRL",
+  "status": "pending"
+}
+```
 
-## Stay in touch
+**Resposta:**
+```json
+{
+  "id": 1,
+  "amount": 100.50,
+  "currency": "BRL",
+  "status": "pending",
+  "createdAt": "2024-01-01T12:00:00.000Z",
+  "updatedAt": "2024-01-01T12:00:00.000Z"
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 🗄️ Modelo de Dados
 
-## License
+### Payment Entity
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|-------------|-----------|
+| id | number | Sim (auto) | Identificador único |
+| amount | number | Sim | Valor do pagamento |
+| currency | string | Sim | Moeda (ex: BRL, USD) |
+| status | string | Sim | Status do pagamento |
+| createdAt | Date | Sim (auto) | Data de criação |
+| updatedAt | Date | Sim (auto) | Data de atualização |
+
+## 🧪 Testes
+
+### Executar todos os testes
+```bash
+pnpm run test
+```
+
+### Testes com watch mode
+```bash
+pnpm run test:watch
+```
+
+### Testes E2E
+```bash
+pnpm run test:e2e
+```
+
+### Coverage
+```bash
+pnpm run test:cov
+```
+
+## 🔍 Linting e Formatação
+
+### Executar linting
+```bash
+pnpm run lint
+```
+
+### Formatação automática
+```bash
+pnpm run format
+```
+
+## 🏗️ Build
+
+### Build de produção
+```bash
+pnpm run build
+```
+
+Os arquivos serão gerados no diretório `dist/`
+
+## 🔄 Fluxo de Funcionamento
+
+1. **Criação de Pagamento**: Cliente envia dados via POST /payments
+2. **Persistência**: Dados são salvos no banco SQLite
+3. **Integração Bancária**: Sistema comunica com API bancária mock (porta 3001)
+4. **Resposta**: Retorna dados do pagamento criado com ID gerado
+
+## 📋 Scripts Disponíveis
+
+| Script | Comando | Descrição |
+|--------|---------|-----------|
+| start | `pnpm start` | Inicia aplicação em modo produção |
+| start:dev | `pnpm start:dev` | Inicia em modo desenvolvimento (watch) |
+| start:debug | `pnpm start:debug` | Inicia em modo debug |
+| build | `pnpm build` | Gera build de produção |
+| test | `pnpm test` | Executa testes unitários |
+| test:e2e | `pnpm test:e2e` | Executa testes E2E |
+| test:cov | `pnpm test:cov` | Executa testes com coverage |
+| lint | `pnpm lint` | Executa linting |
+| format | `pnpm format` | Formata código |
+| bank-api | `pnpm bank-api` | Inicia servidor bancário mock |
+
+## ⚠️ Problemas Conhecidos
+
+### Testes Unitários
+- Os testes unitários do PaymentsService possuem problemas de dependências
+- Necessário configurar mocks adequados para PaymentModelRepository e HttpService
+
+### Banco de Dados
+- Utiliza SQLite em memória - dados são perdidos ao reiniciar
+- Para persistência, configure SQLite com arquivo ou outro banco
+
+## 🔧 Configurações
+
+### Porta da Aplicação
+A aplicação roda na porta `8084` por padrão. Para alterar:
+```bash
+PORT=3000 pnpm start:dev
+```
+
+### Banco de Dados
+Configurado em `src/app.module.ts`:
+```typescript
+SequelizeModule.forRoot({
+  dialect: 'sqlite',
+  host: ':memory:', // Em memória
+  autoLoadModels: true,
+  models: [PaymentModel],
+})
+```
+
+### API Bancária Mock
+Configurada em `src/payments/payments.module.ts`:
+```typescript
+HttpModule.register({
+  baseURL: 'http://localhost:3001',
+})
+```
+
+## 📁 Estrutura de Arquivos
+
+```
+payable-node/
+├── src/                      # Código fonte
+├── test/                     # Testes E2E
+├── dist/                     # Build de produção
+├── node_modules/             # Dependências
+├── prompts/                  # Prompts de IA
+├── bank.json                 # Dados mock da API bancária
+├── package.json              # Configurações do projeto
+├── tsconfig.json             # Configurações TypeScript
+├── nest-cli.json             # Configurações NestJS CLI
+├── .eslintrc.js              # Configurações ESLint
+├── .prettierrc               # Configurações Prettier
+└── README.md                 # Documentação
+```
+
+## 👨‍💻 Desenvolvimento
+
+### Padrões de Código
+- Utiliza ESLint e Prettier para padronização
+- Segue convenções do NestJS
+- TypeScript strict mode desabilitado para flexibilidade
+
+### Estrutura de Commits
+Recomenda-se seguir o padrão de commits convencionais.
+
+## 📄 Licença
+
+Este projeto está sob licença UNLICENSED.
+
+---
+
+**Autor**: Fernando Britto  
+**Versão**: 0.0.1
